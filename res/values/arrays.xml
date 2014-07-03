@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="targettypelist">
+		<item>@string/target1</item>
+		<item>@string/target2</item>
+		<item>@string/target3</item>
+		<item>@string/target4</item>
+		
+	</string-array>
+	
+
+
+</resources>
