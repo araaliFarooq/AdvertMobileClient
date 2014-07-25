@@ -40,7 +40,8 @@ public class RatesFragment extends Fragment implements AdvertListScreen{
 	ListScheduleAdapter adapter;
 	ProgressDialog mProgressDialog;
 	public static String TARGETAREA = "targetArea";
-	public static String TIMESLOT = "timeslot";
+	public static String STARTTIME = "startTime";
+	public static String ENDTIME = "endTime";
 	public static String CAPACITY = "capacity";
 	public static String PRICE = "price";
     public static String STATUS="status";
@@ -58,7 +59,7 @@ public class RatesFragment extends Fragment implements AdvertListScreen{
      rootView = inflater.inflate(R.layout.fragment_rates, container, false);
      setHasOptionsMenu(true);
      fetchAdvertSchedules.listScreen = this;
-     fetchAdvertSchedules.execute("http://10.0.2.2:8080/api/schedules/schedule");
+     fetchAdvertSchedules.execute("http://192.168.205.1:8080/api/schedules/schedule");
      progressBar = (ProgressBar)rootView.findViewById(R.id.progressBar);     
          
         return rootView;

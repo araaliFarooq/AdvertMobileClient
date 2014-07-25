@@ -34,7 +34,7 @@ public class NewUser {
 			
 		@Override
 		public String toString() {
-			return "User [userName="+userName+",password="+password+",emailAddress="+emailAddress+"phoneNumber="+phoneNumber+"]";
+			return "NewUser [emailAddress="+emailAddress+"phoneNumber="+phoneNumber+"userName="+userName+"password="+password+"]";
 		}
 
 }

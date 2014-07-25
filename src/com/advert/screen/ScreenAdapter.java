@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.client.advert.AdvertFragment;
+import com.client.advert.ScreenFragment;
 import com.menu.android.R;
 
 import android.content.Context;
@@ -50,7 +51,7 @@ public class ScreenAdapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		// Declare Variables
 		TextView txttarget;
-		TextView location;
+		TextView  txtlocation;
 		
 		
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,12 +62,12 @@ public class ScreenAdapter extends BaseAdapter {
 
 		// Locate the TextViews in listview_item.xml
 		txttarget = (TextView)itemView.findViewById(R.id.target);
-		location = (TextView)itemView.findViewById(R.id.location);
+		 txtlocation = (TextView)itemView.findViewById(R.id.location);
 	
 		 
 		// Capture position and set results to the TextViews
-		 txttarget.setText(resultp.get(AdvertFragment.TARGETAREA));
-		 location.setText(resultp.get(AdvertFragment.TIMESLOT));
+		 txttarget.setText(resultp.get(ScreenFragment.TARGETAREA));
+		 txtlocation.setText(resultp.get(ScreenFragment.LOCATION));
 		return itemView;	
 		
 		

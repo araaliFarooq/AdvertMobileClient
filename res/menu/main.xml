@@ -12,6 +12,11 @@
         android:id="@+id/menu_item_search" 
         android:showAsAction="ifRoom" 
         android:title="Search"/>
+     <item
+        android:id="@+id/action_progress"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title=""/>
 
 
 </menu>

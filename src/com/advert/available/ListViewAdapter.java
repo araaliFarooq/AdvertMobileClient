@@ -3,7 +3,9 @@ package com.advert.available;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.advert.schedule.AdvertSchedules;
 import com.client.advert.AdvertFragment;
+import com.client.advert.RatesFragment;
 import com.menu.android.R;
 
 import android.content.Context;
@@ -50,10 +52,11 @@ public class ListViewAdapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		// Declare Variables
 		TextView txttarget;
-		TextView txttimeslot;
+		TextView txtstartTime;
 		TextView txtcapacity;
 		TextView txtprice;
 		TextView txtstatus;
+		TextView txtendTime;
 		
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -62,19 +65,20 @@ public class ListViewAdapter extends BaseAdapter {
 		resultp = data.get(position);
 
 		// Locate the TextViews in listview_item.xml
-		txttarget = (TextView)itemView.findViewById(R.id.target);
-		txttimeslot = (TextView)itemView.findViewById(R.id.timeslot);
-		txtcapacity = (TextView)itemView.findViewById(R.id.capacity);
-		txtprice = (TextView)itemView.findViewById(R.id.price);
-		txtstatus = (TextView) itemView.findViewById(R.id.status);
-		 
-		// Capture position and set results to the TextViews
-		 txttarget.setText(resultp.get(AdvertFragment.TARGETAREA));
-		 txttimeslot.setText(resultp.get(AdvertFragment.TIMESLOT));
-		 txtcapacity.setText(resultp.get(AdvertFragment.CAPACITY));
-		 txtprice.setText(resultp.get(AdvertFragment.PRICE));
-		 txtstatus.setText(resultp.get(AdvertFragment.STATUS));
-		
+				txttarget = (TextView)itemView.findViewById(R.id.target);
+				txtstartTime = (TextView)itemView.findViewById(R.id.startTime);
+				txtendTime = (TextView)itemView.findViewById(R.id.endTime);
+				txtcapacity = (TextView)itemView.findViewById(R.id.capacity);
+				txtprice = (TextView)itemView.findViewById(R.id.price);
+				txtstatus = (TextView) itemView.findViewById(R.id.status);
+				 
+				// Capture position and set results to the TextViews
+				 txttarget.setText(resultp.get(AdvertFragment.TARGETAREA));
+				 txtstartTime.setText(resultp.get(AdvertFragment.STARTTIME));
+				 txtendTime.setText(resultp.get(AdvertFragment.ENDTIME));
+				 txtcapacity.setText(resultp.get(AdvertFragment.CAPACITY));
+				 txtprice.setText(resultp.get(AdvertFragment.PRICE));
+				 txtstatus.setText(resultp.get(AdvertFragment.STATUS));
 		
 		itemView.setOnClickListener(new OnClickListener() {
 
@@ -86,7 +90,8 @@ public class ListViewAdapter extends BaseAdapter {
 				// Pass all data rank
 				intent.putExtra("targetArea", resultp.get(AdvertFragment.TARGETAREA));
 				// Pass all data country
-				intent.putExtra("timeslot", resultp.get(AdvertFragment.TIMESLOT));
+				intent.putExtra("startTime", resultp.get(AdvertFragment.STARTTIME));
+				intent.putExtra("endTime", resultp.get(AdvertFragment.ENDTIME));
 				// Pass all data population
 				intent.putExtra("capacity",resultp.get(AdvertFragment.CAPACITY));
 				// Pass all data flag

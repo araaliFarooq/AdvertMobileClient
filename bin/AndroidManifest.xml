@@ -48,6 +48,9 @@
         </activity>
         
         <activity android:name="com.client.advert.MainMenu"/>
+        <activity android:name="com.client.advert.AdvertFragment"/>
+        <activity android:name="com.client.advert.RatesFragment"/>
+        <activity android:name="com.client.advert.ScreenFragment"/>
        <activity android:name="com.advert.structure.StructureAdvert"/>
        <activity android:name="com.advert.available.AdvertListScreen"/>
         <activity android:name="com.advert.available.AvailableSchedule"/>
@@ -56,6 +59,8 @@
        <activity android:name="com.advert.schedule.FetchAdvertSchedules"/>
        <activity android:name="com.client.advert.model.Home"/>
         <activity android:name="com.client.advert.model.AboutUs"/>
+        <activity android:name="com.advert.schedule.AdvertSchedules"/>
+        
         
     </application>
 

@@ -11,8 +11,7 @@
     <string-array name="nav_drawer_items">
         <item >Home</item>
         <item >Advertise Here</item>
-        <item >Create Advert</item>
-        <item >Screen Areas</item>
+          <item >Screen Areas</item>
         <item >Schedules and Rates</item>
         <item >About Us</item>
     </string-array>
@@ -22,19 +21,19 @@
     <array name="nav_drawer_icons">
         
       <item>@drawable/ic_home</item>  
-       <item>@drawable/ic_people</item>
-      <item>@drawable/ic_photos</item>
-        <item>@drawable/ic_communities</item>
+       <item>@drawable/ic_photos</item>
+       <item>@drawable/ic_communities</item>
         <item>@drawable/ic_pages</item>
         <item>@drawable/ic_whats_hot</item>
     </array>
     
     <!-- Content Description -->
     <string name="targetlabel">"targetArea : "</string>
-    <string name="timeslotlabel">"timeslot : "</string>
+    <string name="endTimelabel">"End Time : "</string>
     <string name="capacitylabel">"capacity : "</string>
     <string name="pricelabel">"price : "</string>
     <string name="statuslabel">"status : "</string>
+    <string  name="startTimelabel">"Start Time:"</string>
     
     <string name="desc_list_item_icon">Item Icon</string>
     

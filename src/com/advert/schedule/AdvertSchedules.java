@@ -11,11 +11,12 @@ import android.widget.TextView;
 public class AdvertSchedules extends Activity {
 	// Declare Variables
 	String targetArea;
-	String timeslot;
+	String startTime;
+	String endTime;
 	String capacity;
 	String price;
 	String status;
-	TextView txttarget,txttimeslot,txtcapacity,txtprice, txtstatus;
+	TextView txttarget, txtstartTime,txtendTime,txtcapacity,txtprice, txtstatus;
 	//ImageLoader imageLoader = new ImageLoader(this);
 
 	@Override
@@ -29,14 +30,17 @@ public class AdvertSchedules extends Activity {
 		targetArea = i.getStringExtra("targetArea");
 		// Get the result of country
 		price = i.getStringExtra("price");
+		capacity=i.getStringExtra("capacity");
 		// Get the result of population
 		status = i.getStringExtra("status");
 		// Get the result of flag
-		timeslot = i.getStringExtra("timeslot");
+		startTime = i.getStringExtra("startTime");
+		endTime = i.getStringExtra("endTime");
 
 		// Locate the TextViews in singleitemview.xml
 		txttarget = (TextView) findViewById(R.id.target);
-		 txttimeslot = (TextView) findViewById(R.id.timeslot);
+		 txtstartTime= (TextView) findViewById(R.id.startTime);
+		 txtendTime = (TextView) findViewById(R.id.endTime);
 		txtcapacity = (TextView) findViewById(R.id.capacity);
 		txtprice = (TextView) findViewById(R.id.price);
 		 txtstatus = (TextView) findViewById(R.id.status);
@@ -46,7 +50,8 @@ public class AdvertSchedules extends Activity {
 
 		// Set results to the TextViews
 		txttarget.setText(targetArea);
-		txttimeslot.setText(timeslot);
+		txtstartTime.setText(startTime);
+		txtendTime.setText(endTime);
 		txtcapacity.setText(capacity);
 		txtprice.setText(price);
 		txtstatus.setText(status);

@@ -55,7 +55,8 @@ public class FetchAvailableSchedules extends AsyncTask<String, Void, JSONArray> 
             try {
                 JSONObject jsonObject = todoJsonArray.getJSONObject(i);
                 map.put("targetArea", jsonObject.getString("targetArea"));
-				map.put("timeslot",jsonObject.getString("timeslot"));
+				map.put("startTime",jsonObject.getString("startTime"));
+				map.put("endTime",jsonObject.getString("endTime"));
 				map.put("capacity", jsonObject.getString("capacity"));
 				map.put("price", jsonObject.getString("price"));
 				map.put("status",jsonObject.getString("status"));

@@ -4,7 +4,8 @@ public class Advert {
 
 	private String subject;
 	private String description;
-	private String timeslot;
+	private String startTime;
+	private String endTime;
 	private String targetArea;
 	private String imageUrl;
 	
@@ -26,12 +27,21 @@ public class Advert {
 		this.description = description;
 	}
 
-	public String getTimeSlot() {
-		return timeslot;
+	
+	public String getStartTime() {
+		return startTime;
 	}
 
-	public void setTimeSlot(String timeslot) {
-		this.timeslot = timeslot;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
 	public String getTargetArea() {
@@ -52,7 +62,7 @@ public class Advert {
 	
 	@Override
 	public String toString() {
-		return "Advert [subject=" + subject + ", description=" + description + ", timeslot="
-				+ timeslot +",targetArea="+targetArea+",imageUrl="+imageUrl+ "]";
+		return "Advert [subject=" + subject + ", description=" + description + ", startTime="
+				+ startTime + ", endTime="+ endTime+",targetArea="+targetArea+",imageUrl="+imageUrl+ "]";
 	}
 }

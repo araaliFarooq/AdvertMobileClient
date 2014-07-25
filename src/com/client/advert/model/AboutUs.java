@@ -1,6 +1,7 @@
 package com.client.advert.model;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.webkit.WebSettings.PluginState;
 import com.menu.android.R;
 
 
+@SuppressLint("SetJavaScriptEnabled")
 public class AboutUs extends Activity {
 
 	private WebView webView;
@@ -26,11 +28,11 @@ public class AboutUs extends Activity {
 		setContentView(R.layout.webview);
 		    
 	    
-		String webViewUrl = "http://10.0.2.2/tams/about.html";
+		String webViewUrl = "http://192.168.205.1:8080/index";
 				 
 		 webView = (WebView) findViewById(R.id.webView1);   
 		 
-	     //webView.getSettings().setJavaScriptEnabled(true);
+	     webView.getSettings().setJavaScriptEnabled(true);
 	    
 	     webView.getSettings().setLoadWithOverviewMode(true);
 	    
@@ -41,7 +43,7 @@ public class AboutUs extends Activity {
 	     webView.getSettings().setSupportZoom(true); 
 	     webView.loadUrl(webViewUrl);
 	     startWebView(); 
-		
+	
 	} 
 	
 	private void startWebView() {
@@ -68,7 +70,7 @@ public class AboutUs extends Activity {
 	    
 	   public void onLoadResource (WebView view, String url) {
 
-	        	if (progressDialog == null && url.contains("tams") 
+	        	if (progressDialog == null && url.contains("8080") 
 	            		) {
 	               // in standard case YourActivity.this
 	                progressDialog = new ProgressDialog(AboutUs.this);

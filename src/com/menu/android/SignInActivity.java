@@ -22,6 +22,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,7 +36,7 @@ import android.content.Intent;
 
 public class SignInActivity extends Activity implements OnClickListener {
 
-       EditText etUserName, etPass;
+    EditText etUserName, etPass;
 	TextView error;
 	Button btnSignIn;
 	private String resp;
@@ -51,6 +53,7 @@ public class SignInActivity extends Activity implements OnClickListener {
 		btnSignIn = (Button) findViewById(R.id.btnSignIn);
 		error = (TextView) findViewById(R.id.tv_error);
 
+		   login();
 		btnSignIn.setOnClickListener(this);
 	}
 	 public static String POST(String url, User user){
@@ -116,17 +119,13 @@ public class SignInActivity extends Activity implements OnClickListener {
 			
 				switch(view.getId()){
 					case R.id.btnSignIn:
-						
+						if(checkValidation()){
 						Intent signin = new Intent(SignInActivity.this, MainMenu.class);
 						SignInActivity.this.startActivity(signin);
-						/*if(!validate()){
-							Toast.makeText(getBaseContext(), "Enter some data!", Toast.LENGTH_LONG).show();
-							error.setText("Make Sure All fields Are Field in:");
-						    }
+						}
 						else{
-						// call AsynTask to perform network operation on separate thread
-						new HttpAsyncTask().execute("http://hmkcode.appspot.com/jsonservlet");
-						    }*/
+					Toast.makeText(SignInActivity.this, "Form contains error", Toast.LENGTH_LONG).show();
+						}
 					break;
 				}
 				
@@ -153,19 +152,10 @@ public class SignInActivity extends Activity implements OnClickListener {
 	        // onPostExecute displays the results of the AsyncTask.
 	        @Override
 	        protected void onPostExecute(String result) {
-	        	Toast.makeText(getBaseContext(), "Data Sent!", Toast.LENGTH_LONG).show();
+	        	Toast.makeText(getBaseContext(), "You are Logged in!", Toast.LENGTH_LONG).show();
 	       }
 	    }
 		
-		
-		private boolean validate(){
-			if(etUserName.getText().toString().trim().equals(""))
-				return false;
-			else if(etPass.getText().toString().trim().equals(""))
-				return false;
-			else
-				return true;	
-		}
 		private static String convertInputStreamToString(InputStream inputStream) throws IOException{
 	        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
 	        String line = "";
@@ -177,7 +167,33 @@ public class SignInActivity extends Activity implements OnClickListener {
 	        return result;
 	        
 	    }
-
+		 private void login() {
+		    	
+		        // TextWatcher would let us check validation error on the fly
+		    	etUserName.addTextChangedListener(new TextWatcher() {
+		            public void afterTextChanged(Editable s) {
+		                Validation.hasText(etUserName);
+		            }
+		            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+		            public void onTextChanged(CharSequence s, int start, int before, int count){}
+		        });
+		    	
+		    	 // TextWatcher would let us check validation error on the fly
+		    	etPass.addTextChangedListener(new TextWatcher() {
+		            public void afterTextChanged(Editable s) {
+		                Validation.hasText(etPass);
+		            }
+		            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+		            public void onTextChanged(CharSequence s, int start, int before, int count){}
+		        });
+		 }
 		
-
+		private boolean checkValidation() {
+	        boolean ret = true;
+	 
+	        if (!Validation.hasText(etUserName)) ret = false;
+	        if (!Validation.hasText(etPass)) ret = false;        
+	        
+	        return ret;
+	    }
 }

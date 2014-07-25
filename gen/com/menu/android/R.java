@@ -79,20 +79,24 @@ public final class R {
         public static final int user=0x7f020025;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0030;
+        public static final int action_progress=0x7f0a0036;
+        public static final int action_settings=0x7f0a0034;
         public static final int adDescription=0x7f0a000c;
         public static final int adItems=0x7f0a0016;
         public static final int adScreens=0x7f0a0017;
         public static final int adSubject=0x7f0a000a;
-        public static final int btnAdvert=0x7f0a002e;
+        public static final int avail=0x7f0a0014;
+        public static final int btnAdvert=0x7f0a0032;
         public static final int btnImage=0x7f0a000e;
         public static final int btnPost=0x7f0a0010;
         public static final int btnSignIn=0x7f0a0005;
         public static final int btnSignUp=0x7f0a0009;
-        public static final int capacity=0x7f0a0022;
-        public static final int capacitylabel=0x7f0a0029;
+        public static final int capacity=0x7f0a0024;
+        public static final int capacitylabel=0x7f0a002e;
         public static final int counter=0x7f0a0013;
         public static final int drawer_layout=0x7f0a0000;
+        public static final int endTime=0x7f0a0021;
+        public static final int endTimelabel=0x7f0a002d;
         public static final int etDescription=0x7f0a000d;
         public static final int etEmail=0x7f0a0007;
         public static final int etPass=0x7f0a0004;
@@ -101,34 +105,35 @@ public final class R {
         public static final int etUserName=0x7f0a0003;
         public static final int frame_container=0x7f0a0001;
         public static final int icon=0x7f0a0011;
-        public static final int imageButtonAlpha=0x7f0a0027;
+        public static final int imageButtonAlpha=0x7f0a0029;
         public static final int imageView1=0x7f0a001d;
         public static final int inputSearch=0x7f0a0018;
         public static final int ivImage=0x7f0a000f;
         public static final int list_image=0x7f0a001c;
         public static final int list_slidermenu=0x7f0a0002;
         public static final int list_view=0x7f0a0019;
-        public static final int location=0x7f0a0023;
-        public static final int menu_item_search=0x7f0a0031;
-        public static final int price=0x7f0a0021;
-        public static final int pricelable=0x7f0a002b;
+        public static final int location=0x7f0a0025;
+        public static final int menu_item_search=0x7f0a0035;
+        public static final int price=0x7f0a0023;
+        public static final int pricelable=0x7f0a0030;
         public static final int product_name=0x7f0a001a;
         public static final int progressBar=0x7f0a0015;
-        public static final int status=0x7f0a0020;
-        public static final int tableRow1=0x7f0a0025;
-        public static final int tableRow2=0x7f0a0026;
-        public static final int tableRow3=0x7f0a0028;
-        public static final int tableRow4=0x7f0a002a;
-        public static final int tableRow5=0x7f0a002c;
-        public static final int tableRow6=0x7f0a002d;
+        public static final int startTime=0x7f0a001f;
+        public static final int startTimelabel=0x7f0a002b;
+        public static final int status=0x7f0a0022;
+        public static final int tableRow1=0x7f0a0027;
+        public static final int tableRow2=0x7f0a0028;
+        public static final int tableRow3=0x7f0a002a;
+        public static final int tableRow4=0x7f0a002c;
+        public static final int tableRow5=0x7f0a002f;
+        public static final int tableRow7=0x7f0a0031;
         public static final int target=0x7f0a001e;
         public static final int thumbnail=0x7f0a001b;
-        public static final int timeslot=0x7f0a001f;
         public static final int title=0x7f0a0012;
-        public static final int todoItems=0x7f0a0014;
-        public static final int tvIsConnected=0x7f0a0024;
+        public static final int to=0x7f0a0020;
+        public static final int tvIsConnected=0x7f0a0026;
         public static final int tv_error=0x7f0a0006;
-        public static final int webView1=0x7f0a002f;
+        public static final int webView1=0x7f0a0033;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -146,9 +151,10 @@ public final class R {
         public static final int listview_rate=0x7f03000c;
         public static final int listview_screen=0x7f03000d;
         public static final int mainmenu=0x7f03000e;
-        public static final int singleitemview=0x7f03000f;
-        public static final int singlerates=0x7f030010;
-        public static final int webview=0x7f030011;
+        public static final int progress=0x7f03000f;
+        public static final int singleitemview=0x7f030010;
+        public static final int singlerates=0x7f030011;
+        public static final int webview=0x7f030012;
     }
     public static final class menu {
         public static final int main=0x7f090000;
@@ -157,26 +163,27 @@ public final class R {
         public static final int action_settings=0x7f070001;
         public static final int app_name=0x7f070000;
         public static final int capacitylabel=0x7f070007;
-        public static final int desc_list_item_icon=0x7f07000a;
+        public static final int desc_list_item_icon=0x7f07000b;
         public static final int drawer_close=0x7f070003;
         public static final int drawer_open=0x7f070002;
-        public static final int feedbackbody=0x7f07000d;
-        public static final int feedbackbutton=0x7f07000f;
-        public static final int feedbackemail=0x7f07000c;
-        public static final int feedbackresponse=0x7f07000e;
-        public static final int feedbacktitle=0x7f07000b;
-        public static final int feedbacktype=0x7f070010;
+        public static final int endTimelabel=0x7f070006;
+        public static final int feedbackbody=0x7f07000e;
+        public static final int feedbackbutton=0x7f070010;
+        public static final int feedbackemail=0x7f07000d;
+        public static final int feedbackresponse=0x7f07000f;
+        public static final int feedbacktitle=0x7f07000c;
+        public static final int feedbacktype=0x7f070011;
         public static final int pricelabel=0x7f070008;
+        public static final int startTimelabel=0x7f07000a;
         public static final int statuslabel=0x7f070009;
-        public static final int target1=0x7f070012;
-        public static final int target2=0x7f070013;
-        public static final int target3=0x7f070014;
-        public static final int target4=0x7f070015;
+        public static final int target1=0x7f070013;
+        public static final int target2=0x7f070014;
+        public static final int target3=0x7f070015;
+        public static final int target4=0x7f070016;
         /**  Content Description 
          */
         public static final int targetlabel=0x7f070005;
-        public static final int targettype=0x7f070011;
-        public static final int timeslotlabel=0x7f070006;
+        public static final int targettype=0x7f070012;
         public static final int title_activity_main=0x7f070004;
     }
     public static final class style {

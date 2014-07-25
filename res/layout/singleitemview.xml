@@ -1,60 +1,109 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#3B5998">
+        android:background="#3B5998"
+         >
 
-       <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-            <TextView
+
+       
+
+           <TextView
                 android:id="@+id/target"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="50dp" />
-           
+                android:textSize="30sp" />
 
-       </TableRow>
-        
-       <TableRow
+        </TableRow>
+        <LinearLayout
+			    android:orientation="vertical">
+          <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-		<LinearLayout
-			    android:orientation="horizontal">
+			
+			
 		    <ImageButton
                 android:id="@+id/imageButtonAlpha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:src="@drawable/advertising" />
- 	       <TextView
- 	           android:id="@+id/timeslot"
+                android:src="@drawable/advertising" />  
+ 	       
+		
+           </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+	      <TextView
+                android:id="@+id/startTimelabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="right"
+                android:text="@string/startTimelabel"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                />
+
+                        <TextView
+ 	           android:id="@+id/startTime"
+ 	           android:layout_width="wrap_content"
+ 	           android:layout_height="wrap_content"
+ 	           android:textColor="#FFFFFF"
+ 	           android:layout_gravity="center"
+ 	           android:enabled="true"
+ 	           android:inputType="none"
+ 	           android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+        
+            
+	        <TextView
+                android:id="@+id/endTimelabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:textColor="#FFFFFF"
+                 android:layout_below="@+id/imageButtonAlpha"
+                android:text="@string/endTimelabel"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                />
+             <TextView
+ 	           android:id="@+id/endTime"
  	           android:layout_width="wrap_content"
  	           android:layout_height="wrap_content"
  	           android:layout_gravity="center"
  	           android:enabled="true"
  	           android:inputType="none"
  	           android:textColor="#FFFFFF"
- 	           android:textSize="30dp" />
- 	      
-	 </LinearLayout>
-        
-       </TableRow>
+ 	           android:textSize="20sp" />
 
-    <LinearLayout >
-        <TableRow
+</TableRow>
+        
+ <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-	      <TextView
+           <TextView
                 android:id="@+id/capacitylabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonAlpha"
                 android:text="@string/capacitylabel"
+                android:textColor="#FFFFFF"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 />
 
@@ -62,21 +111,24 @@
                 android:id="@+id/capacity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
-        </TableRow>
-   
-     <TableRow
-            android:id="@+id/tableRow4"
+       
+ </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-            
-         <TextView
+		     <TextView
                android:id="@+id/pricelable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
                 android:text="@string/pricelabel"
-                android:layout_gravity="right" />
+                android:layout_gravity="left" />
                
 	     <TextView
                android:id="@+id/price"
@@ -86,31 +138,25 @@
                 android:enabled="true"
                 android:inputType="none"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
+		 </TableRow>
 
-        </TableRow>
-    
 
-     <TableRow
-            android:id="@+id/tableRow5"
+        <TableRow
+            android:id="@+id/tableRow7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
-            
-            <TextView
+       
+		      <TextView
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        </TableRow>
-        </LinearLayout>
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            
-           <Button
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="5dp"
+                android:textSize="35sp"  />
+				
+			</TableRow>
+		      	<Button
             android:id="@+id/btnAdvert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -118,11 +164,10 @@
             android:layout_marginBottom="10dp"
             android:layout_gravity="center_horizontal"
              />
-		   
 		
-        </TableRow>
-   
-   
-   
 
-</TableLayout>
+    </LinearLayout>
+     
+
+ </TableLayout>
+          

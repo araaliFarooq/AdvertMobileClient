@@ -45,7 +45,7 @@
         android:layout_centerVertical="true"
         android:paddingBottom ="9dip"
         android:textColor="#040404"
-        android:textSize="25dip"
+        android:textSize="15dip"
         android:textStyle="bold"
         android:typeface="sans" />
         
@@ -53,7 +53,7 @@
        <!-- TimeSlot-->
 
     <TextView
-        android:id="@+id/timeslot"
+        android:id="@+id/startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/target"
@@ -62,7 +62,21 @@
         android:paddingTop="5dip"
         android:layout_centerHorizontal="true"
         android:textColor="#343434"
-        android:textSize="15dip" /> 
+        android:textAppearance="?android:attr/textAppearanceSmall"/> 
+        
+    <!-- TimeSlot-->
+
+    <TextView
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/target"
+        android:layout_alignLeft="@+id/target"
+		android:layout_alignBottom="@+id/list_image"
+        android:paddingTop="5dip"
+        android:layout_centerHorizontal="true"
+        android:textColor="#343434"
+       android:textAppearance="?android:attr/textAppearanceSmall" /> 
        
       <!-- Status-->
     
@@ -74,7 +88,8 @@
 		android:layout_marginRight="20dip"
 		android:layout_alignTop="@+id/target"
         android:layout_toLeftOf="@+id/imageView1"
-        android:textSize="30dip" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
 
        <!-- Price-->
    <TextView
@@ -86,7 +101,9 @@
 		android:paddingTop="5dip"
         android:layout_centerHorizontal="true"
         android:textColor="#343434"
-        android:textSize="15dip" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="invisible"
+         />
    
       <!-- Capacity-->
      <TextView
@@ -98,7 +115,9 @@
 		android:paddingTop="5dip"
         android:layout_centerHorizontal="true"
         android:textColor="#343434"
-        android:textSize="15dip" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="invisible"
+        />
  
  
 </RelativeLayout>

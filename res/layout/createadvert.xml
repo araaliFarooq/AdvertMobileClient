@@ -21,6 +21,8 @@
        		android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
         	android:padding="5dp"
+        	android:maxLength="30"
+        	
         	/>
        <TextView 
             android:id="@+id/adDescription"
@@ -31,7 +33,7 @@
        <EditText 
             android:id="@+id/etDescription"
        		android:layout_width="fill_parent"
-       		android:paddingTop="10dp"
+       		android:maxLength="100"
         	android:layout_height="wrap_content"
         	android:padding="30dp"
         	    	/>

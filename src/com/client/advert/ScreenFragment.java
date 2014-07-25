@@ -39,6 +39,7 @@ public class ScreenFragment extends Fragment implements AdvertListScreen  {
 	ProgressBar progressBar;
 	
 	
+	
 	public ScreenFragment(){}
 	
 	ListView listView;
@@ -46,7 +47,13 @@ public class ScreenFragment extends Fragment implements AdvertListScreen  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_screens, container, false);
+        rootView = inflater.inflate(R.layout.fragment_screens, container, false);
+        setHasOptionsMenu(true);
+        fetchScreens.listScreen = this;
+        fetchScreens.execute("http://192.168.205.1:8080/api/screens");
+        progressBar = (ProgressBar)rootView.findViewById(R.id.progressBar);     
+            
+           
         
         
         return rootView;
@@ -54,6 +61,7 @@ public class ScreenFragment extends Fragment implements AdvertListScreen  {
 	@Override
     public void displayList(ArrayList<HashMap<String, String>> arraylist) {
     	listview = (ListView)rootView.findViewById(R.id.adScreens);
+    	
 		// Pass the results into ListViewAdapter.java
 		adapter = new ScreenAdapter(getActivity(), arraylist);
 		// Set the adapter to the ListView

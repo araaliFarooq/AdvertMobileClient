@@ -2,17 +2,13 @@ package com.client.advert;
 
 
 import java.util.ArrayList;
-
-import com.advert.structure.StructureAdFragment;
 import com.advert.structure.StructureAdvert;
 import com.client.advert.NavDrawerListAdapter;
 import com.client.advert.model.AboutUs;
 import com.client.advert.model.NavDrawerItem;
 import com.client.advert.model.Home;
 import com.menu.android.R;
-import com.menu.android.SignUpActivity;
-import com.menu.android.StartPage;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -29,6 +25,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+@SuppressLint("NewApi")
 public class MainMenu extends Activity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -78,7 +75,7 @@ public class MainMenu extends Activity {
 		// Pages
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		// What's hot, We  will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, ""));
+		//navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, ""));
 		
 
 		// Recycle the typed array
@@ -181,20 +178,15 @@ public class MainMenu extends Activity {
 			//fragment =new AdvertFragment();
 			break;
 		case 2:
-			fragment = new StructureAdFragment();
-			break;
-		case 3:
 			fragment = new ScreenFragment();
 			break;
-		case 4:
+		case 3:
 			fragment = new RatesFragment();
 			break;
-		case 5:
-			
+		case 4:
 			Intent about = new Intent(MainMenu.this, AboutUs.class);
 			MainMenu.this.startActivity(about);
 			break;
-
 		default:
 			break;
 		}

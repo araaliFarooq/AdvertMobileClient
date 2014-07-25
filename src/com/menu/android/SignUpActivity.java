@@ -10,22 +10,16 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
-import com.client.advert.MainMenu;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUpActivity extends Activity implements OnClickListener {
@@ -85,13 +79,7 @@ public class SignUpActivity extends Activity implements OnClickListener {
     
     }
     
-    
-    
-    
-    
-    
-    
-    public static String POST(String url, NewUser newUser){
+     public static String POST(String url, NewUser newUser){
 		InputStream inputStream = null;
 		String result = "";
 		try {
@@ -103,8 +91,6 @@ public class SignUpActivity extends Activity implements OnClickListener {
 		    HttpPost httpPost = new HttpPost(url);
 		    
 		    String json = "";
-		    
-
 		    // 3. build jsonObject
 		    JSONObject jsonObject = new JSONObject();
 		    jsonObject.accumulate("userName", newUser.getUserName());
@@ -114,9 +100,6 @@ public class SignUpActivity extends Activity implements OnClickListener {
 		    		    
 		    // 4. convert JSONObject to JSON to String
 		    json = jsonObject.toString();
-
-		    
-		   
 		    
 		    // 5. set json to StringEntity
 		    StringEntity se = new StringEntity(json);
@@ -133,13 +116,12 @@ public class SignUpActivity extends Activity implements OnClickListener {
 			
 			// 9. receive response as inputStream
 			inputStream = httpResponse.getEntity().getContent();
-			
-		    
+			    
 			// 10. convert inputstream to string
 			if(inputStream != null)
 				result = convertInputStreamToString(inputStream);
 			else
-				result = "Did not work!";
+				result = "Failed to Create Account!";
 		
 		} catch (Exception e) {
 			Log.d("InputStream", e.getLocalizedMessage());
@@ -149,22 +131,19 @@ public class SignUpActivity extends Activity implements OnClickListener {
 		return result;
 	}
 	
-	 @Override
-		public void onClick(View view) {
+ @Override
+ public void onClick(View view) {
 		
-			switch(view.getId()){
-				case R.id.btnSignUp:
-					if ( checkValidation () )
-					new HttpAsyncTask().execute("http://hmkcode.appspot.com/jsonservlet");
-	                else
-	                    Toast.makeText(SignUpActivity.this, "Form contains error", Toast.LENGTH_LONG).show();
-					
+		switch(view.getId()){
+			case R.id.btnSignUp:
+				if ( checkValidation () )
+				new HttpAsyncTask().execute("http://192.168.205.1:8080/api/users");
+                else
+                  Toast.makeText(SignUpActivity.this, "Form contains error", Toast.LENGTH_LONG).show();
 				break;
 			}
-			
-		}
-	
-      
+     		}
+	      
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
@@ -180,7 +159,9 @@ public class SignUpActivity extends Activity implements OnClickListener {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-        	Toast.makeText(getBaseContext(), "Data Sent!", Toast.LENGTH_LONG).show();
+        	
+        	Toast.makeText(getBaseContext(), "Account Created!", Toast.LENGTH_LONG).show();
+        	Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
        }
     }
 	
@@ -209,6 +190,4 @@ public class SignUpActivity extends Activity implements OnClickListener {
 
 	
 }
-    
-    
-
+   
