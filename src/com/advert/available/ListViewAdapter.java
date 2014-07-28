@@ -2,12 +2,8 @@ package com.advert.available;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.advert.schedule.AdvertSchedules;
 import com.client.advert.AdvertFragment;
-import com.client.advert.RatesFragment;
 import com.menu.android.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;

@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class FetchAvailableSchedules extends AsyncTask<String, Void, JSONArray> {
 
@@ -48,8 +48,7 @@ public class FetchAvailableSchedules extends AsyncTask<String, Void, JSONArray> 
     protected void onPostExecute(JSONArray todoJsonArray) {
     	
     	arraylist = new ArrayList<HashMap<String, String>>();
-     //   List<AdvertSchedule> todoItems = new ArrayList<AdvertSchedule>();
-
+    
         for (int i = 0; i < todoJsonArray.length(); i++) {
         	HashMap<String, String> map = new HashMap<String, String>();
             try {

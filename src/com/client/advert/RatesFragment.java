@@ -1,36 +1,25 @@
 package com.client.advert;
 
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-
 import com.advert.available.AdvertListScreen;
 import com.advert.available.FetchAvailableSchedules;
-import com.advert.available.ListViewAdapter;
 import com.advert.schedule.ListScheduleAdapter;
 import com.menu.android.R;
-
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
-import android.widget.SearchView.OnQueryTextListener;
+
 
 @SuppressLint("NewApi")
 public class RatesFragment extends Fragment implements AdvertListScreen{
@@ -60,6 +49,7 @@ public class RatesFragment extends Fragment implements AdvertListScreen{
      setHasOptionsMenu(true);
      fetchAdvertSchedules.listScreen = this;
      fetchAdvertSchedules.execute("http://192.168.205.1:8080/api/schedules/schedule");
+     
      progressBar = (ProgressBar)rootView.findViewById(R.id.progressBar);     
          
         return rootView;
@@ -102,6 +92,5 @@ public class RatesFragment extends Fragment implements AdvertListScreen{
 		   }
 		}
 
-	 
 	
 }

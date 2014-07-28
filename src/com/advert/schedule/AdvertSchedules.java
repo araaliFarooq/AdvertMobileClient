@@ -5,7 +5,6 @@ import com.menu.android.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class AdvertSchedules extends Activity {

@@ -10,9 +10,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
+
+import com.client.advert.MainMenu;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -27,6 +31,7 @@ public class SignUpActivity extends Activity implements OnClickListener {
 	Button btnSignUp;
 	EditText etUserName,etPass,etPhone,etEmail;
 	static NewUser newUser;
+	static String responseMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +84,7 @@ public class SignUpActivity extends Activity implements OnClickListener {
     
     }
     
-     public static String POST(String url, NewUser newUser){
+     public static String registerUser(String url, NewUser newUser){
 		InputStream inputStream = null;
 		String result = "";
 		try {
@@ -93,10 +98,10 @@ public class SignUpActivity extends Activity implements OnClickListener {
 		    String json = "";
 		    // 3. build jsonObject
 		    JSONObject jsonObject = new JSONObject();
-		    jsonObject.accumulate("userName", newUser.getUserName());
+		    jsonObject.accumulate("email", newUser.getEmailAddress());
+		    jsonObject.accumulate("phone", newUser.getPhoneNumber());
+		    jsonObject.accumulate("username", newUser.getUserName());
 		    jsonObject.accumulate("password", newUser.getPassword());
-		    jsonObject.accumulate("emailAddress", newUser.getEmailAddress());
-		    jsonObject.accumulate("phoneNumber", newUser.getPhoneNumber());
 		    		    
 		    // 4. convert JSONObject to JSON to String
 		    json = jsonObject.toString();
@@ -118,13 +123,15 @@ public class SignUpActivity extends Activity implements OnClickListener {
 			inputStream = httpResponse.getEntity().getContent();
 			    
 			// 10. convert inputstream to string
-			if(inputStream != null)
+			if(inputStream != null){
 				result = convertInputStreamToString(inputStream);
-			else
+			    responseMessage=result;
+			     Log.i("response", result);
+			}else{
 				result = "Failed to Create Account!";
-		
+			}
 		} catch (Exception e) {
-			Log.d("InputStream", e.getLocalizedMessage());
+			//Log.d("InputStream", e.getLocalizedMessage());
 		}
 		
 		// 11. return result
@@ -137,7 +144,8 @@ public class SignUpActivity extends Activity implements OnClickListener {
 		switch(view.getId()){
 			case R.id.btnSignUp:
 				if ( checkValidation () )
-				new HttpAsyncTask().execute("http://192.168.205.1:8080/api/users");
+					//new HttpAsyncTask().execute("http://192.168.205.1:8080/api/users");
+				new HttpAsyncTask().execute("http://10.48.6.169:8080/api/users");
                 else
                   Toast.makeText(SignUpActivity.this, "Form contains error", Toast.LENGTH_LONG).show();
 				break;
@@ -154,14 +162,17 @@ public class SignUpActivity extends Activity implements OnClickListener {
         	newUser.setEmailAddress(etEmail.getText().toString());
         	newUser.setPhoneNumber(etPhone.getText().toString());
         	
-        	return POST(urls[0],newUser);
+        	return registerUser(urls[0],newUser);
         }
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
         	
         	Toast.makeText(getBaseContext(), "Account Created!", Toast.LENGTH_LONG).show();
-        	Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
+        	//Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
+        	Intent signup = new Intent(SignUpActivity.this, MainMenu.class);
+			SignUpActivity.this.startActivity(signup);
+        	
        }
     }
 	

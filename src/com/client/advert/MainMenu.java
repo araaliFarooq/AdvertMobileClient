@@ -2,7 +2,6 @@ package com.client.advert;
 
 
 import java.util.ArrayList;
-import com.advert.structure.StructureAdvert;
 import com.client.advert.NavDrawerListAdapter;
 import com.client.advert.model.AboutUs;
 import com.client.advert.model.NavDrawerItem;

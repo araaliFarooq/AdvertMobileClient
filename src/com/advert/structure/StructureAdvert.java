@@ -3,23 +3,22 @@ package com.advert.structure;
 
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+
+import com.client.advert.MainMenu;
 import com.menu.android.R;
 import com.menu.android.Validation;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -45,7 +44,6 @@ private MenuItem item;
 
 private String url = "http://192.168.205.1:8080/api/adverts";
 private static final int FILECHOOSER_RESULTCODE   = 2888;
-private Uri mCapturedImageURI = null;
 ByteArrayOutputStream baos;
 Bitmap advertImage;
 EditText etSubject,etDescription;
@@ -56,6 +54,8 @@ String startTime;
 String endTime;
 String description;
 String subject;
+Bitmap bitmap;
+String imageName;
 
 
 @Override
@@ -64,15 +64,17 @@ protected void onCreate(Bundle savedInstanceState) {
 	setContentView(R.layout.createadvert);
 	Intent i = getIntent();
 	targetArea = i.getStringExtra("targetArea");
-	startTime=i.getStringExtra("startTIme");
+	startTime=i.getStringExtra("startTime");
 	endTime = i.getStringExtra("endTime");
-	etSubject = (EditText) findViewById(R.id.etSubject);
-	etDescription = (EditText) findViewById(R.id.etDescription);
+	Log.i("targetArea", targetArea);
+	Log.i("startTime", startTime);
+	Log.i("endTime", endTime);
+	
+	
 	ivImage = (ImageView)findViewById(R.id.ivImage);
 	btnSelectPhoto=(Button) findViewById(R.id.btnImage);
 	btnPost = (Button) findViewById(R.id.btnPost);
-	subject= etSubject.getText().toString();
-	description = etDescription.getText().toString();
+	
 	btnSelectPhoto.setOnClickListener(this);
 	btnPost.setOnClickListener(this);
 	formulate();
@@ -84,11 +86,13 @@ protected void onCreate(Bundle savedInstanceState) {
 		case R.id.btnPost:
 			item.setActionView(R.layout.progress);
 			if(checkValidation()){
+			subject= etSubject.getText().toString();
+			description = etDescription.getText().toString();
 			SendHttpRequestTask t = new SendHttpRequestTask();
+		
 			String[] params = new String[]{url, subject,description,startTime,endTime,targetArea};
 			t.execute(params);
-			Toast.makeText(getApplicationContext(),"Successfully Uploaded",Toast.LENGTH_LONG).show();
-			}else{
+					}else{
 		    Toast.makeText(StructureAdvert.this, "Form contains error", Toast.LENGTH_LONG).show();
 			}
 			break;
@@ -115,6 +119,7 @@ protected void onCreate(Bundle savedInstanceState) {
 		
 		@Override
 		protected String doInBackground(String... params) {
+			
 			String url = params[0];
 			String param1 = params[1];
 			String param2 = params[2];
@@ -123,26 +128,25 @@ protected void onCreate(Bundle savedInstanceState) {
 			String param5 = params[5];
 			try {
 				
-				Bitmap b = BitmapFactory.decodeResource(StructureAdvert.this.getResources(), ivImage.getId());
+				bitmap=BitmapFactory.decodeFile("sdcard/AdvertExpo/"+imageName);
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				b.compress(CompressFormat.PNG, 0, baos);
+				bitmap.compress(CompressFormat.JPEG, 100, baos);
 				
-				HttpClient client = new DefaultHttpClient();
-				
+				HttpClient client = new DefaultHttpClient();	
 				HttpPost post = new HttpPost(url);
-				MultipartEntity multiPart = new MultipartEntity();
-				multiPart.addPart("param1", new StringBody(param1));
-				multiPart.addPart("param2", new StringBody(param2));
-				multiPart.addPart("param3", new StringBody(param3));
-				multiPart.addPart("param4", new StringBody(param4));
-				multiPart.addPart("param5", new StringBody(param5));
-				multiPart.addPart("file", new ByteArrayBody(baos.toByteArray(), "advertImageName.png"));					
+				MultipartEntity multiPart = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+				multiPart.addPart("subject", new StringBody(param1));
+				multiPart.addPart("description", new StringBody(param2));
+				multiPart.addPart("startTime", new StringBody(param3));
+				multiPart.addPart("endTime", new StringBody(param4));
+				multiPart.addPart("targetArea", new StringBody(param5));
+				multiPart.addPart("image", new ByteArrayBody(baos.toByteArray(),imageName));					
 				post.setEntity(multiPart);
 				client.execute(post);
+        		
 			}
 			catch(Throwable t) {
-				// Handle error here
-		Toast.makeText(getApplicationContext(),"Advert not Uploaded",Toast.LENGTH_LONG).show();
+				
 				t.printStackTrace();
 				
 			}
@@ -153,54 +157,47 @@ protected void onCreate(Bundle savedInstanceState) {
 		@Override
 		protected void onPostExecute(String data) {			
 			item.setActionView(null);
+		Toast.makeText(getApplicationContext(),"Advert Successfully Uploaded",Toast.LENGTH_LONG).show();
+		Intent afterUpload=new Intent(StructureAdvert.this,MainMenu.class);
+		StructureAdvert.this.startActivity(afterUpload);
+
 		   }			
         	}
 public void openFileChooser(){  
-                                       
-      
-     File imageStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"AdvertExpo");
-         if (!imageStorageDir.exists()) {
-             imageStorageDir.mkdirs();
-             Log.i("hello", "jonathan");
-         }
-         File file = new File(imageStorageDir + File.separator + "IMG_" + String.valueOf(System.currentTimeMillis()) + ".jpg");
-         mCapturedImageURI = Uri.fromFile(file); // save to the private variable
-         Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT,null);
-         galleryIntent.setType("image/*");
-         galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
-
+                                
+        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT,null);
+        galleryIntent.setType("image/*");
+        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
-                  Intent chooser = new Intent(Intent.ACTION_CHOOSER);
-         chooser.putExtra(Intent.EXTRA_INTENT, galleryIntent);      
-         chooser.putExtra(Intent.EXTRA_TITLE, "Attach Image");
-         chooser.putExtra(MediaStore.EXTRA_OUTPUT, mCapturedImageURI);
+        Intent chooser = new Intent(Intent.ACTION_CHOOSER);
+        chooser.putExtra(Intent.EXTRA_INTENT, galleryIntent);      
+        chooser.putExtra(Intent.EXTRA_TITLE, "Attach Image");
          Intent[] intentArray =  {cameraIntent}; 
-         chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
-         startActivityForResult(chooser,FILECHOOSER_RESULTCODE);
+        chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
+        startActivityForResult(chooser,FILECHOOSER_RESULTCODE);
 
        }
 
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	//super.onActivityResult(requestCode, resultCode, data);
+	SaveImage saveImage=new SaveImage();
 	if (requestCode == FILECHOOSER_RESULTCODE && resultCode == Activity.RESULT_OK) {
-		 Bitmap bitmap = null;
-		    
-		        if(data.getData()!=null)
+		 		    
+		   if(data.getData()!=null)
 		        {
-		            try 
+		       try 
 		            {
-		            if (bitmap != null) 
+		     if (bitmap != null) 
 		                {
-		                    bitmap.recycle();
+		             bitmap.recycle();
 		                }
 
-		            InputStream stream = getContentResolver().openInputStream(data.getData());
-		           // bitmap = Media.getBitmap(getContentResolver(), mCapturedImageURI );
-		            bitmap = BitmapFactory.decodeStream(stream);
-		            stream.close();
-		            ivImage.setImageBitmap(bitmap);
-		            ivImage.setVisibility(View.VISIBLE);
+		 InputStream stream = getContentResolver().openInputStream(data.getData());
+		 bitmap = BitmapFactory.decodeStream(stream);
+		 stream.close();
+		 imageName= saveImage.storedImageAdvert(this, bitmap);
+		 ivImage.setImageBitmap(bitmap);
+		 ivImage.setVisibility(View.VISIBLE);
 		            }
 
 		        catch (FileNotFoundException e) 
@@ -217,11 +214,11 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		        else 
 		        {
 		            bitmap=(Bitmap) data.getExtras().get("data"); 
+		            imageName=saveImage.storedImageAdvert(this, bitmap);
 		            ivImage.setImageBitmap(bitmap);
 		            ivImage.setVisibility(View.VISIBLE);
 		            
 		        }
-
 		        super.onActivityResult(requestCode, resultCode, data);
 		    }
      	}
@@ -239,7 +236,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     private void formulate() {
     	
-        // TextWatcher would let us check validation error on the fly
+    	etSubject = (EditText) findViewById(R.id.etSubject);
+    	// TextWatcher would let us check validation error on the fly
     	etSubject.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 Validation.hasText(etSubject);
@@ -249,7 +247,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         });
     	
     	
-        // TextWatcher would let us check validation error on the fly
+    	etDescription = (EditText) findViewById(R.id.etDescription);
+    	// TextWatcher would let us check validation error on the fly
     	etDescription.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 Validation.hasText(etDescription);
@@ -268,7 +267,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         
         boolean hasDrawable = (ivImage.getDrawable() != null);
     	if(!hasDrawable) {
-    	Toast.makeText(getApplicationContext(),"please Attach an Image",Toast.LENGTH_LONG).show();
+    	Toast.makeText(getApplicationContext(),"please Attach an Image Of your Product",Toast.LENGTH_LONG).show();
 		  
     	}   		
     	

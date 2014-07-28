@@ -2,12 +2,7 @@ package com.client.advert;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-
 import com.advert.available.AdvertListScreen;
-import com.advert.available.FetchAvailableSchedules;
-import com.advert.schedule.ListScheduleAdapter;
 import com.advert.screen.FetchScreens;
 import com.advert.screen.ScreenAdapter;
 import com.menu.android.R;
@@ -21,7 +16,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -38,8 +32,6 @@ public class ScreenFragment extends Fragment implements AdvertListScreen  {
 	View rootView;
 	ProgressBar progressBar;
 	
-	
-	
 	public ScreenFragment(){}
 	
 	ListView listView;
@@ -51,12 +43,9 @@ public class ScreenFragment extends Fragment implements AdvertListScreen  {
         setHasOptionsMenu(true);
         fetchScreens.listScreen = this;
         fetchScreens.execute("http://192.168.205.1:8080/api/screens");
-        progressBar = (ProgressBar)rootView.findViewById(R.id.progressBar);     
-            
-           
+        progressBar = (ProgressBar)rootView.findViewById(R.id.progressBar);
         
-        
-        return rootView;
+         return rootView;
     }
 	@Override
     public void displayList(ArrayList<HashMap<String, String>> arraylist) {
@@ -79,7 +68,7 @@ public class ScreenFragment extends Fragment implements AdvertListScreen  {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
 		  inflater.inflate(R.menu.main, menu);
-		 	    		  
+    		  
     }
 		
 	@Override
@@ -95,7 +84,5 @@ public class ScreenFragment extends Fragment implements AdvertListScreen  {
 	         return super.onOptionsItemSelected(item);
 		   }
 		}
-
-	 
 
 	 }

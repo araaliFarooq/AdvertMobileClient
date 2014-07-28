@@ -44,7 +44,7 @@ public class AdvertFragment extends Activity implements AdvertListScreen,OnQuery
 		setContentView(R.layout.fragment_available);
         fetchAvailableSchedules.listScreen = this;
         fetchAvailableSchedules.execute("http://192.168.205.1:8080/api/schedules/available");
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+          progressBar = (ProgressBar)findViewById(R.id.progressBar);
      }
 	
 	 @Override

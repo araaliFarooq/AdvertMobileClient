@@ -2,16 +2,11 @@ package com.advert.screen;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.client.advert.AdvertFragment;
 import com.client.advert.ScreenFragment;
 import com.menu.android.R;
-
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;

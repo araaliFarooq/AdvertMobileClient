@@ -4,20 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
-
 import com.client.advert.MainMenu;
-import com.client.advert.model.Home;
-
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -39,8 +32,6 @@ public class SignInActivity extends Activity implements OnClickListener {
     EditText etUserName, etPass;
 	TextView error;
 	Button btnSignIn;
-	private String resp;
-	private String errorMsg;
 	static User user;
 
 	/** Called when the activity is first created. */

@@ -60,10 +60,8 @@ public class AvailableSchedule extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent advert = new Intent(AvailableSchedule.this, StructureAdvert.class);
-				// Pass all data rank
-				
+								
 				advert.putExtra("targetArea",targetArea);
-				// Pass all data country
 				advert.putExtra("startTime", startTime);
 				advert.putExtra("endTime", endTime);	
 				AvailableSchedule.this.startActivity(advert);
